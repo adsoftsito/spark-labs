@@ -2,8 +2,8 @@ name: spark
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  #push:
-  #  branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   #pull_request:
   #  branches: [ "main" ]
   # Allows you to run this workflow manually from the Actions tab
@@ -38,21 +38,21 @@ jobs:
         hadoop-version: '3'
 
     - run: spark-submit --version
-    - run: wget -O dataset.csv ${{github.event.client_payload.dataseturl}}
-    - run: wget -O app.py ${{github.event.client_payload.codeurl}}
-    - run: ls -la
-    - run: spark-submit --master local app.py dataset.csv
-    - run: ls -la  
+ #   - run: wget -O dataset.csv ${{github.event.client_payload.dataseturl}}
+ #   - run: wget -O app.py ${{github.event.client_payload.codeurl}}
+ #   - run: ls -la
+ #   - run: spark-submit --master local app.py dataset.csv
+ #   - run: ls -la  
 
-    - name: GIT commit and push docs
-      env: 
-        CI_COMMIT_MESSAGE: save spark results
-        CI_COMMIT_AUTHOR: adsoftsito 
-      run: |
-        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "adsoft@live.com.mx"
-        git add results
-        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-        git push
+ #   - name: GIT commit and push docs
+ #     env: 
+ #       CI_COMMIT_MESSAGE: save spark results
+ #       CI_COMMIT_AUTHOR: adsoftsito 
+ #     run: |
+ #       git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+ #       git config --global user.email "adsoft@live.com.mx"
+ #       git add results
+ #       git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+ #       git push
 
 
