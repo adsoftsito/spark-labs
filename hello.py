@@ -15,7 +15,7 @@ df.show()
 df.write.mode("overwrite").json("results")
 
 # Apply transformation - converting lowercase messages to uppercase
-transformed_df = df.withColumn("transformedMessage", upper(df.hello))
+transformed_df = df.withColumn("transformedMessage", (df.hello))
 
 # Write the transformed messages to another Kafka topic
 query = (
