@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
 import json
-import struct
+from pyspark.sql.functions import to_json
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 if __name__ == "__main__":
     spark = SparkSession\
@@ -35,7 +36,7 @@ if __name__ == "__main__":
     df = spark.read.json("results/data.json")
 
     # Convert DataFrame columns to a "value" column that contains data in a JSON format
-    df = df.select(json.dumps(struct("*")).alias("value"))
+    df = df.select(to_json(struct("*")).alias("value"))
 
     # Write DataFrame to Kafka topic
     df.selectExpr("CAST(value AS STRING)").write \
