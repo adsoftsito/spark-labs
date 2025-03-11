@@ -26,20 +26,20 @@ if __name__ == "__main__":
     query='SELECT name as key, `birth` as value FROM people WHERE `birth` BETWEEN "1903-01-01" AND "1915-12-31" ORDER BY `birth`'
     df_people_1903_1906 = spark.sql(query)
     df_people_1903_1906.show(20)
-    results = df_people_1903_1906.toJSON().collect()
+    #results = df_people_1903_1906.toJSON().collect()
     #print(results)
-    df_people_1903_1906.write.mode("overwrite").json("results")
+    #df_people_1903_1906.write.mode("overwrite").json("results")
     #df_people_1903_1906.coalesce(1).write.json('results/data_merged.json')
-    with open('results/data.json', 'w') as file:
-        json.dump(results, file)
+    #with open('results/data.json', 'w') as file:
+    #    json.dump(results, file)
 
     
     # Example DataFrame
     
-    df = spark.read.json("results/data.json")
+    #df = spark.read.json("results/data.json")
 
     # Convert DataFrame columns to a "value" column that contains data in a JSON format
-    #df = df.select(to_json(struct("*")).alias("value"))
+    #df = df_people_1903_1906.select(to_json(struct("*")).alias("value"))
 # Define the schema for the JSON data
     schema = StructType([
         StructField("key", StringType()),
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     ])
 
 # Parse the JSON string into a Struct type 
-    df = df.select(from_json(df.toJSON(), schema).alias("value"))
+    df = df_people_1903_1906.select(from_json(df.toJSON(), schema).alias("value"))
     # Write DataFrame to Kafka topic
     df.selectExpr("CAST(value AS STRING)").write \
         .format("kafka") \
