@@ -37,19 +37,23 @@ jobs:
         spark-version: '3.5.3'
         hadoop-version: '3'
     
-    - name: Start Kafka
-      uses: 280780363/kafka-action@v1.0
-      with:
-        kafka version: "latest" # Optional, kafka version
-        zookeeper version: "latest" # Optional, zookeeper version
-        kafka port: 9092 # Optional, kafka port
-        zookeeper port: 2181 # Optional, zookeeper port
-        auto create topic: "true" # Optional, auto create kafka topic
-    - run: spark-submit --version
-    - run: wget -O people.csv ${{github.event.client_payload.dataseturl}}
+  #  - name: Start Kafka
+  #    uses: 280780363/kafka-action@v1.0
+  #    with:
+  #      kafka version: "latest" # Optional, kafka version
+  #      zookeeper version: "latest" # Optional, zookeeper version
+  #      kafka port: 9092 # Optional, kafka port
+  #      zookeeper port: 2181 # Optional, zookeeper port
+  #      auto create topic: "true" # Optional, auto create kafka topic
+  #  - run: spark-submit --version
+  #  - run: wget -O people.csv ${{github.event.client_payload.dataseturl}}
+    - run: wget -O dataset.csv https://raw.githubusercontent.com/adsoftsito/bigdata/refs/heads/main/datasets/people.csv   
+    - run: ls -la
+    - run: spark-submit --master local people.py 
+
  #   - run: wget -O app.py ${{github.event.client_payload.codeurl}}
  #   - run: ls -la
-    - run: spark-submit --master local people.py 
+ #   - run: spark-submit --master local people.py 
  #dataset.csv
  #   - run: ls -la  
 
