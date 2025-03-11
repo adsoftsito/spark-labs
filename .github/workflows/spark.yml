@@ -46,7 +46,7 @@ jobs:
         zookeeper port: 2181 # Optional, zookeeper port
         auto create topic: "true" # Optional, auto create kafka topic
     - run: spark-submit --version
- #   - run: wget -O dataset.csv ${{github.event.client_payload.dataseturl}}
+    - run: wget -O people.csv ${{github.event.client_payload.dataseturl}}
  #   - run: wget -O app.py ${{github.event.client_payload.codeurl}}
  #   - run: ls -la
     - run: spark-submit --master local people.py 
