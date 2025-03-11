@@ -33,5 +33,5 @@ jobs:
         zookeeper port: 2181 # Optional, zookeeper port
         auto create topic: "true" # Optional, auto create kafka topic
     - run: pip install -r requirements.txt
-    - run: python kafka.py
+    - run: python hello-kafka.py
     
