@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 import json
+import struct
 
 if __name__ == "__main__":
     spark = SparkSession\
