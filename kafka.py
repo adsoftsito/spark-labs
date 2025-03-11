@@ -1,7 +1,7 @@
-from kafka import KafkaConsumer
+#from kafka import KafkaConsumer
 #from pymongo import MongoClient
 #from pymongo.server_api import ServerApi
-import json
+#import json
 #import subprocess
 
 
@@ -32,10 +32,10 @@ import json
 #except:
 #    print("Could not connect to MongoDB")
 
-consumer = KafkaConsumer('test',bootstrap_servers=[
-     'localhost:9092'
-     ])
+#consumer = KafkaConsumer('test',bootstrap_servers=[
+#     'localhost:9092'
+#     ])
 # Parse received data from Kafka
-for msg in consumer:
-    record = json.loads(msg.value)
-    print(record)
+#for msg in consumer:
+#    record = json.loads(msg.value)
+#    print(record)
