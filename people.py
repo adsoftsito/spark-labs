@@ -2,6 +2,8 @@ from pyspark.sql import SparkSession
 import json
 from pyspark.sql.functions import to_json
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+import struct 
+
 
 if __name__ == "__main__":
     spark = SparkSession\
