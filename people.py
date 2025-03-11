@@ -13,11 +13,11 @@ if __name__ == "__main__":
     df_people = df_people.withColumnRenamed("date of birth", "birth")
     df_people.createOrReplaceTempView("people")
     query='DESCRIBE people'
-    spark.sql(query).show(20)
+    #spark.sql(query).show(20)
 
     query="""SELECT name, birth FROM people WHERE sex=="male" ORDER BY `birth`"""
     df_people_names = spark.sql(query)
-    df_people_names.show(20)
+    #df_people_names.show(20)
 
     query='SELECT name as key, `birth` as value FROM people WHERE `birth` BETWEEN "1903-01-01" AND "1915-12-31" ORDER BY `birth`'
     df_people_1903_1906 = spark.sql(query)
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     
     # Example DataFrame
-    df = spark.read.json("path_to_your_json_file")
+    df = spark.read.json("results/data.json")
 
     # Convert DataFrame columns to a "value" column that contains data in a JSON format
     df = df.select(to_json(struct("*")).alias("value"))
