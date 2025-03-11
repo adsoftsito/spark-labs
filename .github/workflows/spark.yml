@@ -49,7 +49,7 @@ jobs:
   #  - run: wget -O people.csv ${{github.event.client_payload.dataseturl}}
     - run: wget -O dataset.csv https://raw.githubusercontent.com/adsoftsito/bigdata/refs/heads/main/datasets/people.csv   
     - run: ls -la
-    - run: spark-submit --master local people.py 
+    - run: spark-submit --master local people2.py 
 
  #   - run: wget -O app.py ${{github.event.client_payload.codeurl}}
  #   - run: ls -la
