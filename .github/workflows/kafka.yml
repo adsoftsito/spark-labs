@@ -32,5 +32,5 @@ jobs:
         kafka port: 9092 # Optional, kafka port
         zookeeper port: 2181 # Optional, zookeeper port
         auto create topic: "true" # Optional, auto create kafka topic
-    - run: ls -la
+    - run: pip install -r requirements.txt
     
