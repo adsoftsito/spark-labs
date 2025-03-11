@@ -30,8 +30,8 @@ if __name__ == "__main__":
     #print(results)
     df_people_1903_1906.write.mode("overwrite").json("results")
     #df_people_1903_1906.coalesce(1).write.json('results/data_merged.json')
-    #with open('results/data.json', 'w') as file:
-    #    json.dump(results, file)
+    with open('results/data.json', 'w') as file:
+        json.dump(results, file)
 
     
     # Example DataFrame
