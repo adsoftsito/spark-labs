@@ -32,7 +32,7 @@ import json
 #except:
 #    print("Could not connect to MongoDB")
 
-consumer = KafkaConsumer('test',bootstrap_servers=[
+consumer = KafkaConsumer(security_protocol="SSL", 'test',bootstrap_servers=[
      'localhost:9092'
      ])
 # Parse received data from Kafka
