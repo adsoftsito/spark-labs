@@ -42,7 +42,7 @@ consumer = KafkaConsumer(
 )
 consumer.subscribe(["people"])
 for message in consumer:
-    message = f"""Message received: {message.value}
+    print('Message received: ', message.value)
 
 #consumer = KafkaConsumer(
 #     'test', 
