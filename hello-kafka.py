@@ -32,10 +32,23 @@ import json
 #except:
 #    print("Could not connect to MongoDB")
 
-consumer = KafkaConsumer(security_protocol="SSL", 'test',bootstrap_servers=[
-     'localhost:9092'
-     ])
+consumer = KafkaConsumer(
+    bootstrap_servers=["localhost:9092"],
+    auto_offset_reset="earliest",
+    enable_auto_commit=True,
+    group_id="people.grp-0",
+    key_deserializer=lambda x: json.loads(x.decode("utf-8")),
+    value_deserializer=lambda x: json.loads(x.decode("utf-8"))
+)
+consumer.subscribe(["people"])
+for message in consumer:
+    message = f"""Message received: {message.value}
+
+#consumer = KafkaConsumer(
+#     'test', 
+#     bootstrap_servers=['localhost:9092']
+#                        )
 # Parse received data from Kafka
-for msg in consumer:
-    record = json.loads(msg.value)
-    print(record)
+#for msg in consumer:
+#    record = json.loads(msg.value)
+#    print(record)
