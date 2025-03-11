@@ -47,7 +47,9 @@ if __name__ == "__main__":
     ])
 
 # Parse the JSON string into a Struct type 
-    df = df_people.select(from_json(df_people.toJSON(), schema).alias("value"))
+    #df = df_people.select(from_json(df_people.toJSON(), schema).alias("value"))
+    df = spark.createDataFrame([("2022", "January"), ("2021", "December")], ["key", "value"])
+
     # Write DataFrame to Kafka topic
     df.selectExpr("CAST(value AS STRING)").write \
         .format("kafka") \
