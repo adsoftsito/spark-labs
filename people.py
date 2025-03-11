@@ -47,7 +47,7 @@ if __name__ == "__main__":
     ])
 
 # Parse the JSON string into a Struct type 
-    df = df.select(from_json(df.value, schema).alias("value"))
+    df = df.select(from_json(df.toJSON(), schema).alias("value"))
     # Write DataFrame to Kafka topic
     df.selectExpr("CAST(value AS STRING)").write \
         .format("kafka") \
