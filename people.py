@@ -14,18 +14,18 @@ if __name__ == "__main__":
     print("read people.csv ... ")
     path_people="people.csv"
     df_people = spark.read.csv(path_people,header=True,inferSchema=True)
-    df_people = df_people.withColumnRenamed("date of birth", "birth")
-    df_people.createOrReplaceTempView("people")
-    query='DESCRIBE people'
+    df_people = df_people.withColumnRenamed("date of birth", "value")
+    #df_people.createOrReplaceTempView("people")
+    #query='DESCRIBE people'
     #spark.sql(query).show(20)
 
-    query="""SELECT name, birth FROM people WHERE sex=="male" ORDER BY `birth`"""
-    df_people_names = spark.sql(query)
+    #query="""SELECT name, birth FROM people WHERE sex=="male" ORDER BY `birth`"""
+    #df_people_names = spark.sql(query)
     #df_people_names.show(20)
 
-    query='SELECT name as key, `birth` as value FROM people WHERE `birth` BETWEEN "1903-01-01" AND "1915-12-31" ORDER BY `birth`'
-    df_people_1903_1906 = spark.sql(query)
-    df_people_1903_1906.show(20)
+    #query='SELECT name as key, `birth` as value FROM people WHERE `birth` BETWEEN "1903-01-01" AND "1915-12-31" ORDER BY `birth`'
+    #df_people_1903_1906 = spark.sql(query)
+    #df_people_1903_1906.show(20)
     #results = df_people_1903_1906.toJSON().collect()
     #print(results)
     #df_people_1903_1906.write.mode("overwrite").json("results")
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     ])
 
 # Parse the JSON string into a Struct type 
-    df = df_people_1903_1906.select(from_json(df_people_1903_1906.toJSON(), schema).alias("value"))
+    df = df_people.select(from_json(df_people.toJSON(), schema).alias("value"))
     # Write DataFrame to Kafka topic
     df.selectExpr("CAST(value AS STRING)").write \
         .format("kafka") \
