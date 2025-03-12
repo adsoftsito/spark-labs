@@ -33,7 +33,7 @@ import json
 #    print("Could not connect to MongoDB")
 
 consumer = KafkaConsumer(
-    bootstrap_servers=["localhost:9092"],
+    bootstrap_servers=["https://jubilant-meme-q77q57jr4x9347w-9092.app.github.dev/"],
     auto_offset_reset="earliest",
     enable_auto_commit=True,
     group_id="people.grp-0",
