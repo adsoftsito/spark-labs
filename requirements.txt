@@ -1,1 +1,4 @@
 kafka-python
+pymongo
+psycopg2-binary
+sqlalchemy
