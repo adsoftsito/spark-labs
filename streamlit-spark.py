@@ -94,3 +94,10 @@ if st.button("Query mongodb collection"):
     for item in items:
         st.write(f"{item['name']} : {item['birth']}:")
 
+if st.button("Query Postgresql table"):
+    # Perform query.
+    df = conn.query('SELECT * FROM people;', ttl="10m")
+    # Print results.
+    for row in df.itertuples():
+        st.write(row)
+
